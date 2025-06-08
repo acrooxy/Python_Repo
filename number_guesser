@@ -1,0 +1,47 @@
+from ast import Try
+import random
+import os
+
+secret_num = random.randint(1,100)
+print(type(secret_num))
+looping = True
+try_counter = 0
+guess = 0
+print("The computer has selected a number between 1 and 100. Can you guess what number it is? \n\n  Enter your number now:")
+
+print("cheat: ", secret_num)
+
+def wrong_func():
+    print("Wrong choice! \n Try again:")
+
+def clear_console():
+    print('\n' * 40) # cmd clear trick
+
+while looping == True:
+    os.system('cls') # works only in terminal CMD, not IDE
+    print("This is your ", try_counter, " try.")
+
+    while True:
+        try:
+            guess = int(input("Give number: "))  #try block
+            break
+        except ValueError:
+            print("This is not a number, try again.")
+        
+
+    # validate if it the same as randint choice 
+    if secret_num == guess:
+        print ("That is it ! This is correct number!");
+        print("You guessed the correct numbe in ", try_counter, " tries.")
+        looping = False
+    elif secret_num < guess:
+        wrong_func()
+        print("Too high! \n\n")
+
+    elif secret_num > guess:
+        wrong_func()
+        print("Too low! \n\n")
+        
+    
+    try_counter += 1
+
