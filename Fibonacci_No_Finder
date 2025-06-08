@@ -1,0 +1,53 @@
+
+'''
+n = int(input("Which Fibonacci No you want to trace? "))
+fib_list = []
+a = 0
+b = 1
+
+for i in range(n):
+    print(f"F({i}) = {a}")
+    fib_list.append(a)
+    a, b = b, a + b # b = a, b = a+b
+
+print(fib_list)
+
+print("Sum fo all numbers = ", sum(fib_list))
+'''
+
+import tkinter as tk
+
+def generate_fibonacci():
+    try:
+        n = int(entry.get())
+        a, b = 0, 1
+        result = []
+
+        for _ in range(n):
+            result.append(str(a))
+            a, b = b, a + b
+
+        result_label.config(text=", ".join(result))
+    except ValueError:
+        result_label.config(text="Please enter a valid integer.")
+
+# Create the window
+window = tk.Tk()
+window.title("Fibonacci Generator")
+window.geometry("400x200")
+
+# Input field
+tk.Label(window, text="How many Fibonacci numbers to generate?").pack()
+entry = tk.Entry(window)
+entry.pack()
+
+# Button
+button = tk.Button(window, text="Generate", command=generate_fibonacci)
+button.pack()
+
+# Result display
+result_label = tk.Label(window, text="", wraplength=380)
+result_label.pack(pady=10)
+
+# Run the application
+window.mainloop()
